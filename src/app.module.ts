@@ -9,6 +9,8 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { JwtAuthGuard } from "./common/guards/jwt-auth.guard";
 import { RolesGuard } from "./common/guards/roles.guard";
+import { ProductsModule } from './modules/products/products.module';
+import { SupplyBatchModule } from './modules/supply-batch/supply-batch.module';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { RolesGuard } from "./common/guards/roles.guard";
     MongooseModule.forRoot(process.env.MONGO_URI),
     UsersModule,
     AuthModule,
+    ProductsModule,
+    SupplyBatchModule,
   ],
   controllers: [AppController],
   providers: [
