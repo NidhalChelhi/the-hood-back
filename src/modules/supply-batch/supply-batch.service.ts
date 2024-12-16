@@ -110,10 +110,9 @@ export class SupplyBatchService {
       );
 
       if (updatedBatch && updatedBatch.quantity <= 0) {
-        // Correctly remove batch from product using $pull
         await this.productModel.updateOne(
           { _id: productId },
-          { $pull: { supplyBatches: updatedBatch._id } }
+          { $pull: { supplyBatches: updatedBatch._id.toString() } }
         );
 
         // Delete the supply batch document
