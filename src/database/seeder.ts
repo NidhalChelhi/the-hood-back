@@ -1,5 +1,5 @@
 import * as bcrypt from "bcrypt";
-import { connect, connection, Model } from "mongoose";
+import  { connect, connection, Model } from "mongoose";
 import { User, UserSchema } from "../modules/users/user.schema";
 import * as dotenv from "dotenv";
 
