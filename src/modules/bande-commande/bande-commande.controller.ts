@@ -48,21 +48,21 @@ export class BandeCommandeController {
     return await this.bandeCommandeService.findOwnById(id, req.user?.userId);
   }
 
-  @Roles("restaurant_manager, stock_manager, admin")
+  @Roles("restaurant_manager", "stock_manager", "admin")
   @Patch(":id")
   async update(
     @Param("id") id: string,
     @Req() req : any,
     @Body() updateBandeCommandeDto: UpdateBandeCommandeDto
   ) {
-    return this.bandeCommandeService.updateBandeCommande(
+    return await this.bandeCommandeService.updateBandeCommande(
       id,
       updateBandeCommandeDto,
       req.user?.role,
     );
   }
 
-  @Roles("restaurant_manager", "stock_manager")
+  @Roles("restaurant_manager", "stock_manager", "admin")
   @Delete(":id")
   remove(@Param("id") id: string) {
     return this.bandeCommandeService.deleteBandeCommande(id);

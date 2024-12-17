@@ -63,22 +63,31 @@ export class BandeCommandeService {
       updateBandeCommandeDto: UpdateBandeCommandeDto,
       role : string
     ) : Promise<BandeCommande> {
-      if(role == UserRole.StockManager && updateBandeCommandeDto.quantity){
-          throw new ForbiddenException("Stock manager cannot update quantity");
+      if(role == UserRole.StockManager || role == UserRole.Admin){
+        const updatedBandeCommande= await this.bandeCommandeModel
+          .findByIdAndUpdate(
+            id,
+            {$set : {status : updateBandeCommandeDto.status}},
+            { new : true, runValidators : true}
+          );
+        if(!updatedBandeCommande){
+          throw new NotFoundException("Bande Commande not found");
+        }
+        return updatedBandeCommande;
       }
-      if(role == UserRole.RestaurantManager && updateBandeCommandeDto.status){
-          throw new ForbiddenException("Restaurant manager cannot update status");
-      }
-      const updatedBandeCommande= await this.bandeCommandeModel
-        .findByIdAndUpdate(
-          id,
-          updateBandeCommandeDto,
-          { new : true, runValidators : true}
-        );
-      if(!updatedBandeCommande){
+      if(role == UserRole.RestaurantManager ){
+        const updatedBandeCommande= await this.bandeCommandeModel
+          .findByIdAndUpdate(
+            id,
+            { $inc : {quantity : updateBandeCommandeDto.quantity}},
+            { new : true, runValidators : true}
+          );
+        if(!updatedBandeCommande){
         throw new NotFoundException("Bande Commande not found");
       }
-      return updatedBandeCommande;
+        return updatedBandeCommande;
+      }
+      throw new ForbiddenException("Cannot access without role")
   }
 
   async deleteBandeCommande(id: string) : Promise<void>{
