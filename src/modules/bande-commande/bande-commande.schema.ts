@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
-import { CommandeStatus } from "src/common/enums/commande-status.enum";
+import { CommandeStatus } from "../../common/enums/commande-status.enum";
 
 @Schema({ timestamps : true })
 export class BandeCommande extends Document {
@@ -13,7 +13,7 @@ export class BandeCommande extends Document {
     @Prop({ required : true, type : Types.ObjectId, ref : "User"})
     caissier : Types.ObjectId;
 
-    @Prop({required : true, type : CommandeStatus})
+    @Prop({required : true, enum : Object.values(CommandeStatus)})
     status : CommandeStatus;
 }
 
