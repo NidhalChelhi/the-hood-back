@@ -9,8 +9,9 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { JwtAuthGuard } from "./common/guards/jwt-auth.guard";
 import { RolesGuard } from "./common/guards/roles.guard";
-import { ProductsModule } from './modules/products/products.module';
-import { SupplyBatchModule } from './modules/supply-batch/supply-batch.module';
+import { ProductsModule } from "./modules/products/products.module";
+import { SupplyBatchModule } from "./modules/supply-batch/supply-batch.module";
+import { BandeCommandeModule } from "./modules/bande-commande/bande-commande.module";
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { SupplyBatchModule } from './modules/supply-batch/supply-batch.module';
     AuthModule,
     ProductsModule,
     SupplyBatchModule,
+    BandeCommandeModule,
   ],
   controllers: [AppController],
   providers: [
