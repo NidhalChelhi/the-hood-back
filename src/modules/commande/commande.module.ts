@@ -16,7 +16,7 @@ import { UsersModule } from "../users/users.module";
     MongooseModule.forFeature([
       { name: Commande.name, schema: CommandeSchema },
       { name: BandeCommande.name, schema: BandeCommandeSchema },
-      { name : User.name, schema : UserSchema},
+      { name: User.name, schema: UserSchema },
     ]),
     ProductsModule,
     UsersModule,
