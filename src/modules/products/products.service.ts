@@ -144,7 +144,14 @@ export class ProductsService {
     }
 
     let remainingQuantity = quantity;
-    const usedBatches = [];
+    const usedBatches : {
+      batchId : string,
+      quantityUsed : number,
+      purchasePrice : number,
+      goldPrice : number,
+      silverPrice : number,
+      bronzePrice : number
+    }[] = [];
 
     for (const batch of product.supplyBatches) {
       if (remainingQuantity <= 0) break;
@@ -155,6 +162,9 @@ export class ProductsService {
         batchId: batch._id.toString(),
         quantityUsed: usedQuantity,
         purchasePrice: batch.purchasePrice,
+        goldPrice : batch.sellingPriceGold,
+        silverPrice : batch.sellingPriceSilver,
+        bronzePrice : batch.sellingPriceBronze
       });
 
       // Update or remove batch
