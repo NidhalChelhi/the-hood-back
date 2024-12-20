@@ -21,7 +21,7 @@ export class BandeCommandeController {
   @Post()
   async create(@Body() createBandeCommandeDto: CreateBandeCommandeDto) {
     return await this.bandeCommandeService.createBandeCommande(
-      createBandeCommandeDto
+      createBandeCommandeDto,
     );
   }
 
@@ -33,18 +33,13 @@ export class BandeCommandeController {
 
   @Roles("admin", "stock_manager")
   @Get(":id")
-  async findOne(
-    @Param("id") id: string
-  ) {
+  async findOne(@Param("id") id: string) {
     return await this.bandeCommandeService.findById(id);
   }
 
   @Roles("restaurant_manager")
   @Get("own/:id")
-  async findOwnOne(
-    @Param("id") id : string,
-    @Req() req : any
-  ){
+  async findOwnOne(@Param("id") id: string, @Req() req: any) {
     return await this.bandeCommandeService.findOwnById(id, req.user?.userId);
   }
 
@@ -52,8 +47,8 @@ export class BandeCommandeController {
   @Patch(":id")
   async update(
     @Param("id") id: string,
-    @Req() req : any,
-    @Body() updateBandeCommandeDto: UpdateBandeCommandeDto
+    @Req() req: any,
+    @Body() updateBandeCommandeDto: UpdateBandeCommandeDto,
   ) {
     return await this.bandeCommandeService.updateBandeCommande(
       id,

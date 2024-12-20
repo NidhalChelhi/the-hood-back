@@ -43,7 +43,7 @@ export class SupplyBatchController {
   @Patch(":id")
   async update(
     @Param("id") id: string,
-    @Body() updateSupplyBatchDTO: UpdateSupplyBatchDTO
+    @Body() updateSupplyBatchDTO: UpdateSupplyBatchDTO,
   ) {
     return this.supplyBatchService.updateSupplyBatch(id, updateSupplyBatchDTO);
   }

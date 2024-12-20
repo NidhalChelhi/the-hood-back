@@ -18,7 +18,7 @@ import { SupplyBatchService } from "../supply-batch/supply-batch.service";
 export class ProductsController {
   constructor(
     private readonly productsService: ProductsService,
-    private readonly supplyBatchService: SupplyBatchService
+    private readonly supplyBatchService: SupplyBatchService,
   ) {}
 
   @Roles("admin", "stock_manager")
@@ -47,7 +47,7 @@ export class ProductsController {
   @Patch(":id")
   async update(
     @Param("id") id: string,
-    @Body() updateProductDTO: UpdateProductDTO
+    @Body() updateProductDTO: UpdateProductDTO,
   ) {
     return this.productsService.updateProduct(id, updateProductDTO);
   }
@@ -75,7 +75,7 @@ export class ProductsController {
   @Post(":id/retrieve-stock")
   async retrieveStock(
     @Param("id") productId: string,
-    @Body("quantity") quantity: number
+    @Body("quantity") quantity: number,
   ) {
     return this.supplyBatchService.retrieveStock(productId, quantity);
   }

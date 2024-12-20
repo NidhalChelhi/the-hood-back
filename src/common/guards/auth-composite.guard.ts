@@ -16,7 +16,7 @@ export class AuthCompositeGuard implements CanActivate {
   constructor(
     private readonly jwtAuthGuard: JwtAuthGuard,
     private readonly rolesGuard: RolesGuard,
-    private readonly reflector: Reflector
+    private readonly reflector: Reflector,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {

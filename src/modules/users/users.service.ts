@@ -23,7 +23,7 @@ export class UsersService {
     });
     if (existingUser) {
       throw new BadRequestException(
-        "User with this username or email already exists"
+        "User with this username or email already exists",
       );
     }
 
@@ -63,7 +63,7 @@ export class UsersService {
             ? updateUserDTO.location
             : undefined,
       },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
     if (!updatedUser) {
       throw new NotFoundException("User not found");
